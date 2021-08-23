@@ -1,7 +1,5 @@
 <?php
 include "../config.php";
-
-
     $sql = "SELECT * FROM user";
     $result = mysqli_query($conn,$sql);
     //$row = mysqli_fetch_array($result);
@@ -23,6 +21,6 @@ if ($result->num_rows > 0) {
       }
       else
       {
-               echo json_encode(array('success' => true,'data'=>'status code 400'));
+               echo json_encode(array('success' => false,'data'=>'status code 400'));
       }
 ?>

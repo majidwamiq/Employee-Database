@@ -1,14 +1,13 @@
 <?php
-ob_start();
 session_start();
-if ($_SESSION['login']==true) {
-	// code...
-//echo $_SESSION['login'];
-
+//print_r($_SESSION);
+if (isset($_SESSION['login'])) {
+    //echo $_SESSION['login'];
 }
 else
 {
-	header('location:index.php');
+	header('location:login.html');
+    echo "SESSION not set";
     exit();
 }
 ?>
@@ -35,8 +34,6 @@ else
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
            <div class="navbar-nav">
                <h5 class="nav-item nav-link avtive" style="font-size: 20px;">
-               <!-- 	<?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname'];?> -->
-               		
                	</h5>
 			<h5 class="nav-item nav-link avtive" style="font-size: 20px;"></h5>
            </div>
@@ -74,7 +71,7 @@ else
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
 	$(document).ready(function() {
-        	//alert("Login successfully");
+        	alert("Login successfully");
             $.ajax({
                 url: "api/homepage_api.php",
                 type: "POST",
@@ -93,11 +90,10 @@ else
 
                 $("#userTable tbody").append(tr_str);
                     });
- 
-
                }
             });
-    });
+
+  });
 </script>
 </body>
 </html>

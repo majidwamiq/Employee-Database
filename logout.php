@@ -2,8 +2,8 @@
 
 ob_start();
 session_start();
-echo $_SESSION['login']="";
-session_unset();
+
+unset($_SESSION['login']);
 session_destroy();
 
 ?>
@@ -41,7 +41,7 @@ session_destroy();
 		<img src="img/emoji.png" width="100px" height="100px">
 </h1>
 <div class="a">
-	<a href="index.php">click Here To Login Again</a>
+	<a href="login.html">click Here To Login Again</a>
 </div>
 	</div>
 </nav>

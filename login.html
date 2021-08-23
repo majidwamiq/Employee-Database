@@ -1,7 +1,14 @@
 <?php
-ob_start();
 session_start();
-?> 
+//echo $_SESSION['login'];
+if (isset($_SESSION['login'])) {
+     header('location:home.php');
+}
+else
+{
+    
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +26,7 @@ session_start();
 <body class="body">
  <div class="center">
  	<div class="container">
-	  <form id="registration" method="post">
+	  <form id="registration" method="POST">
 			<div class="row">
 				<div class="col-sm-3">
 					<h2 class="text_center">Log in</h2>
@@ -43,69 +50,69 @@ session_start();
 		</form>
   </div>
 </div>
+
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
  <link rel="stylesheet" href="css/bootstrap.min.css">
  <script src="register.js"></script>
 
 <script type="text/javascript">
-	// Variable to hold request
-var request;
-
-// Bind to the submit event of our form
-$("#registration").submit(function(event){
-       var email = $("#email").val();
+$('#login').on('click', function() {
+    //alert(' ajax call start')
+        $("#login").attr("disabled", "disabled");  
+        var email = $("#email").val();
         var password = $("#password").val();
-    // Prevent default posting of form - put here to work in case of errors
-    event.preventDefault();
-
-    // Abort any pending request
-    if (request) {
-        request.abort();
-    }
-    // setup some local variables
-    var $form = $(this);
-
-    // Let's select and cache all the fields
-    var $inputs = $form.find("input, select, button, textarea");
-
-    // Serialize the data in the form
-    var serializedData = $form.serialize();
-
-    // Let's disable the inputs for the duration of the Ajax request.
-    // Note: we disable elements AFTER the form data has been serialized.
-    // Disabled form elements will not be serialized.
-    $inputs.prop("disabled", true);
-
-    // Fire off the request to /form.php
-   if(email != '' && password!=''){
-            $.ajax({
-                url: 'api/login_api.php',
-                type: 'post',
-                data: serializedData,
-                dataType: 'JSON',
-                success: function(response){
-                    //myobj = JSON.parse(response);
-                   //console.log(response.success); 
-           console.log(response.success);
-           if (response.success==true) {
-            <?php
-            $_SESSION['login']= true ;
-            ?>
-            response.success==false;
+        var urls = ['api/login_api.php','api/check_session.php'];
+        if(email!="" && password!=""){
+            $.each(urls, function(i,u){ 
+     $.ajax(u, 
+       { type: 'POST',
+        data: {
+                    email: email,
+                    password: password              
+                },
+         success: function (response) {
+            //alert("success function start")
+                myobj = JSON.parse(response);
+                console.log(myobj.success);
+           if (myobj.success==true) {
+            //$('#mydiv').html(response);
+            //alert("response success")
             window.location = "home.php";
            }
            else
            {
-           console.log(response.success);
+           console.log(myobj.success);
+           alert("API Response = false");
+           }
+         } 
+       }
+     );
+});
+/*            $.ajax({
+                url: "api/login_api.php",
+                type: "POST",
+                data: {
+                    email: email,
+                    password: password              
+                },
+           success: function(response){
+                myobj = JSON.parse(response);
+                console.log(myobj.success);
+           if (myobj.success==true) {
+            $('#mydiv').html(response);
+        window.location = "home.php";
+           }
+           else
+           {
+           console.log(myobj.success);
            alert("API Response = false");
            }
  }
-            });
+            });*/
         }
 
-  
-    });
+    });    
 </script>
 </body>
 </html>
