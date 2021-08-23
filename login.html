@@ -1,7 +1,8 @@
 <?php
 session_start();
+//echo $_SESSION['login'];
 if (isset($_SESSION['login'])) {
-     header('location:home.php');
+header('location:home.php');
 }
 else
 {
@@ -74,7 +75,8 @@ $('#login').on('click', function() {
             //alert("success function start")
                 myobj = JSON.parse(response);
                 console.log(myobj.success);
-           if (myobj.success==true) {
+                //console.log(response)
+           if (myobj.success) {
             //$('#mydiv').html(response);
             //alert("response success")
             window.location = "home.php";

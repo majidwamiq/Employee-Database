@@ -1,13 +1,12 @@
 <?php
 session_start();
-//print_r($_SESSION);
 if (isset($_SESSION['login'])) {
-    //echo $_SESSION['login'];
+    echo $_SESSION['login'];
 }
 else
 {
 	header('location:login.html');
-    echo "SESSION not set";
+    //echo "SESSION not set";
     exit();
 }
 ?>
