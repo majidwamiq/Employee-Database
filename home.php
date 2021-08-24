@@ -1,7 +1,8 @@
 <?php
 session_start();
-if (isset($_SESSION['login'])) {
-    echo $_SESSION['login'];
+if (isset($_SESSION['login']))
+{
+
 }
 else
 {
@@ -25,7 +26,7 @@ else
 	
 	 <nav class="navbar navbar-expand-md navbar-light bg-info">
 	    <a class="navbar-brand">
-            <img src="img/logo.jpg" height="33" alt="Majid-logo">
+            <img src="img/blub.png" height="50" width="50" alt="world-logo">
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -44,12 +45,14 @@ else
 <div>
 	<h1 class="h">
 			<?php
-				echo "Welcome";
+				echo "Welcome <br>";
+                echo $_SESSION['login'];
 			?>
     </h1>
 	</div>
-	<h2 class="h2" style="margin-left: 10px;">Total User On Your Page</h2>
-
+	<h2 class="h2" style="margin-left: 10px;">
+        Total User On Your Page
+    </h2>
 	<div id="userTable">
 		<tbody></tbody>
 	</div>
@@ -66,7 +69,6 @@ else
   </table>
 	</div>
 </div>
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
 	$(document).ready(function() {
@@ -76,12 +78,10 @@ else
                 type: "POST",
                  success: function(response){
                  	myobj = JSON.parse(response);
-                    ///var len = response.da.length;
-                   //console.log(myobj.data[0].email); 
- $.each(myobj.data, function(i) {
-  	//alert(response[i].firstname);
-                        var tr_str = "<tr>" +
-                    //"<td align='center'>" + (i+1) + "</td>" +
+                    //console.log(myobj.data[0].email); 
+                    $.each(myobj.data, function(i) {
+  	                //alert(response[i].firstname);
+                    var tr_str = "<tr>" +
                     "<td align='center'>" + myobj.data[i].firstname + "</td>" +
                     "<td align='center'>" + myobj.data[i].lastname + "</td>" +
                     "<td align='center'>" + myobj.data[i].email + "</td>" +

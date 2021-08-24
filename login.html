@@ -1,8 +1,9 @@
 <?php
 session_start();
 //echo $_SESSION['login'];
-if (isset($_SESSION['login'])) {
-header('location:home.php');
+if (isset($_SESSION['login']))
+{
+    header('location:home.php');
 }
 else
 {
@@ -34,7 +35,6 @@ else
 					<label for="email"><b>Email</b></label>
 					<input class="form-control" id="email" type="text" name="email" required>
 					<br>
-
 					<label for="password"><b>Password</b></label>
 					<input class="form-control" id="password"  type="password" name="password" required>
 					<hr class="mb-3">
@@ -50,69 +50,48 @@ else
 		</form>
   </div>
 </div>
-
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
  <link rel="stylesheet" href="css/bootstrap.min.css">
  <script src="register.js"></script>
-
-<script type="text/javascript">
-$('#login').on('click', function() {
+ <script type="text/javascript">
+ $('#login').on('click', function() {
     //alert(' ajax call start')
         $("#login").attr("disabled", "disabled");  
         var email = $("#email").val();
         var password = $("#password").val();
         var urls = ['api/login_api.php','api/check_session.php'];
-        if(email!="" && password!=""){
-            $.each(urls, function(i,u){ 
-     $.ajax(u, 
-       { type: 'POST',
-        data: {
-                    email: email,
-                    password: password              
-                },
-         success: function (response) {
-            //alert("success function start")
-                myobj = JSON.parse(response);
-                console.log(myobj.success);
-                //console.log(response)
-           if (myobj.success) {
-            //$('#mydiv').html(response);
-            //alert("response success")
-            window.location = "home.php";
-           }
-           else
-           {
-           console.log(myobj.success);
-           alert("API Response = false");
-           }
-         } 
-       }
-     );
-});
-/*            $.ajax({
-                url: "api/login_api.php",
-                type: "POST",
+        if(email!="" && password!="")
+        {
+            $.each(urls, function(i,u)
+            { 
+             $.ajax(u, 
+               { type: 'POST',
                 data: {
-                    email: email,
-                    password: password              
-                },
-           success: function(response){
-                myobj = JSON.parse(response);
-                console.log(myobj.success);
-           if (myobj.success==true) {
-            $('#mydiv').html(response);
-        window.location = "home.php";
-           }
-           else
-           {
-           console.log(myobj.success);
-           alert("API Response = false");
-           }
- }
-            });*/
+                            email: email,
+                            password: password              
+                        },
+                 success: function (response)
+                 {
+                    //alert("success function start")
+                    myobj = JSON.parse(response);
+                    console.log(myobj.success);
+                    //console.log(response)
+                   if (myobj.success)
+                       {
+                        //$('#mydiv').html(response);
+                        //alert("response success")
+                        window.location = "home.php";
+                       }
+                       else
+                       {
+                       console.log(myobj.success);
+                       alert("API Response = false");
+                       }
+                 } 
+               });
+            });
         }
-
     });    
 </script>
 </body>

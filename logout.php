@@ -1,13 +1,9 @@
 <?php
-
 ob_start();
 session_start();
-
 unset($_SESSION['login']);
 session_destroy();
-
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,13 +32,13 @@ session_destroy();
 <body>
 	<div>
 		<h1 class="h1">
-		Logout Successfully
-		<br>
-		<img src="img/emoji.png" width="100px" height="100px">
-</h1>
-<div class="a">
-	<a href="login.html">click Here To Login Again</a>
-</div>
+			Logout Successfully
+			<br>
+			<img src="img/emoji.png" width="100px" height="100px">
+    </h1>
+			<div class="a">
+				<a href="login.html">click Here To Login Again</a>
+			</div>
 	</div>
 </nav>
 </body>
