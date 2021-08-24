@@ -39,6 +39,9 @@
 					<br>
 					<hr class="mb-3">
 					<input class="btn btn-info" type="submit" id="register" name="create" value="Sign Up">
+                    <div style="margin-left: 5%; , margin-top: 0;, ">
+                        <a href="login.html" class="button">Log-in</a>
+                    </div>    
 				</div>
 			</div>
 		</div>
